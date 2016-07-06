@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!--IE浏览器用最新的渲染模式-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<!--强制让页面宽度适应设备的宽，且不允许用户缩放-->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+	<title>消息</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<link rel="stylesheet" href="css/circle.css">
+</head>
+<body>
+<div class="circleContainer">
+	<header class="circleHead">
+		<ul class="nav-group">
+			<li class="item active"><a ui-sref="circle.topic">话题</a></li>
+			<li class="item"><a ui-sref="circle.attention">关注</a></li>
+			<li class="item"><a ui-sref="circle.recommend">推荐</a></li>
+		</ul>
+		<a class="rightBtn" href="ling.html"></a>
+	</header>
+	<section class="circleContent" ui-view>
+		
+	</section>
+	
+</div>
+<script src="js/jquery.js"></script>
+<script src="js/setfontsize.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-ui-router.min.js"></script>	
+<script>
+
+$(".nav-group").on("click","li",function(){
+	$(this).addClass("active").siblings().removeClass("active");
+})
+
+
+</script>
+</body>
+</html>

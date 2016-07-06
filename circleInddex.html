@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<!--IE浏览器用最新的渲染模式-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<!--强制让页面宽度适应设备的宽，且不允许用户缩放-->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+	<title>圈子</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<link rel="stylesheet" href="css/circle.css">
+</head>
+<body>
+<div class="circleContain">
+	<section class="circleMain" ui-view>
+		
+	</section>
+	<footer class="footer">
+		<nav class="footer-nav">
+			<li class="footer-li"><a ui-sref="homePage"><i class="fa fa-indent"></i><br>首页</a></li>
+			<li class="footer-li"><a ui-sref="class"><i class="fa fa-list-ul"></i><br>课程分类</a></li>
+			<li class="footer-li"><a ui-sref="circle"><i class="fa fa-circle-o"></i><br>圈子</a></li>
+			<li class="footer-li"><a ui-sref="my"><i class="fa fa-comment-o"></i><br>我的</a></li>
+		</nav>
+	</footer>
+</div>
+<script src="js/jquery.js"></script>
+<script src="js/setfontsize.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-ui-router.min.js"></script>	
+<script>
+
+	var myApp=angular.module('myApp',['ui.router']);
+	myApp.config(['$urlRouterProvider','$stateProvider',function($urlRouterProvider,$stateProvider)
+	{
+		$urlRouterProvider.otherwise('/circle');
+		$stateProvider
+			.state('homePage',{
+				url:'/homePage',
+				template:"发的发的发"//template:"消息"
+				
+			})
+			.state('class',{
+				url:'/class',
+				templateUrl:"class.html"//template:"电话"
+			})
+			//圈子
+			.state('circle',{                
+				url:'/circle',
+				templateUrl:"circle.html", //template:"联系人"
+				controller:function($scope,$state) {					 
+					 $state.go("circle.topic");
+						 
+				 }
+				
+			})
+			//圈子话题
+			.state('circle.topic',{                
+				url:'/topic',
+				templateUrl:"topic.html"//template:"联系人"
+				
+			})
+			//圈子关注
+			.state('circle.attention',{                
+				url:'/attention',
+				templateUrl:"attention.html" //template:"联系人"
+			})
+			//圈子推荐
+			.state('circle.recommend',{                
+				url:'/recommend',
+				templateUrl:"recommend.html" //template:"联系人"
+			})
+			.state('my',{
+				url:'/my',
+				templateUrl:"my.html" //template:"动态"
+			})
+	}])
+	
+</script>
+</body>
+</html>
